@@ -3,7 +3,7 @@ require 'byebug'
 
 RSpec.describe "Api::V1::Auths", type: :request do
   let!(:user) { create(:fer_user) }
-  let!(:other_user) { create(:user, password: "test", password_confirmation: "test") }
+  let!(:other_user) { create(:user) }
 
 
   describe "POST /api/v1/login" do

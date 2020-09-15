@@ -1,7 +1,6 @@
 require 'byebug'
 module Secured
-    def authenticate_user!
-                
+    def authenticate_user!                
         headers = request.headers
         if headers['Authorization'].present? && headers['Authorization']
             if (decoded_hash = TokenValidationService.decode(headers['Authorization']))
@@ -12,6 +11,20 @@ module Secured
             end
         end
         render json: {error: 'Unauthorized'}, status: :unauthorized
+    end
+
+
+    def option_authenticate!
+        headers = request.headers
+        if headers['Authorization'].present? && headers['Authorization']
+            if (decoded_hash = TokenValidationService.decode(headers['Authorization']))
+                user_id = decoded_hash[0]['user_id']
+                if(Current.user = User.find(user_id))
+                    return
+                end
+            end
+        end
+        Current.user = nil
     end
 end
 
