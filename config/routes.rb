@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'option/create'
-  get 'option/destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/health", to: "health#health"
   namespace :api do
@@ -17,7 +15,11 @@ Rails.application.routes.draw do
       end
 
       resources :questions, only: [] do
-        resources :options, only: [:index, :create, :update, :show, :destroy] 
+        resources :options, only: [:index, :create, :update, :show, :destroy]         
+      end
+
+      resources :options, only:[] do
+        resources :responses, only: [:create]
       end
     end
   end

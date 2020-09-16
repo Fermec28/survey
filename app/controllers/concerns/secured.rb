@@ -1,4 +1,3 @@
-require 'byebug'
 module Secured
     def authenticate_user!                
         headers = request.headers
