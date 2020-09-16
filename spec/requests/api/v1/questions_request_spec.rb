@@ -9,7 +9,7 @@ RSpec.describe "Questions", type: :request do
     let!(:survey) {create(:survey, user_id: user.id)}
 
 
-    describe "POT /api/v1/surveys/survey_id/questions" do
+    describe "POST /api/v1/surveys/survey_id/questions" do
       it "returns http success" do
         payload = {question: { description: "fer"}}
         post "/api/v1/surveys/#{survey.id}/questions", params: payload, headers: auth_headers
