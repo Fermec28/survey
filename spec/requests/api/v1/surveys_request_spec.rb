@@ -15,6 +15,9 @@ RSpec.describe "Api::V1::Surveys", type: :request do
       it "returns http success" do
         payload = {survey: { description: "Description"}}
         post "/api/v1/surveys/", params: payload, headers: auth_headers
+        response_payload = JSON.parse(response.body)
+        expect(response_payload).to_not be_empty
+        expect(response_payload["description"]).to eq(payload[:survey][:description])
         expect(response).to have_http_status(:success)
       end
     end
