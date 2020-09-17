@@ -9,16 +9,16 @@ class Api::V1::AuthController < ApplicationController
         token = TokenValidationService.encode(payload)
         render json: {Authorization: token}.merge(user.slice(:id, :email)), status: :ok
     else
-        render json: {failure: "Log in failed! Username or password invalid!"}
+        render json: {failure: "Log in failed! Username or password invalid!"}, status: :bad_request
     end
   end
 
   def user_is_authenticated
-    render json: {message: "You are authorized"}
+    render json: {message: "You are authorized"}, status: :ok
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end

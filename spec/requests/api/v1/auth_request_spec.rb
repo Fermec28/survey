@@ -8,11 +8,9 @@ RSpec.describe "Api::V1::Auths", type: :request do
 
   describe "POST /api/v1/login" do
     it "returns http success" do
-      payload = {
-        user:{
+      payload = {       
           email: user.email,
-          password: "test"
-        }
+          password: "test"  
       }
       post "/api/v1/login", params:payload
       expect(response).to have_http_status(:success)
