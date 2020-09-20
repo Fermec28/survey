@@ -106,7 +106,7 @@ You can use your token to retrieve all the data required
 
    `bundle install`
 
-4. Install requirements:
+4. Create Data Base:
 
    `rails db:create`
 
@@ -124,6 +124,10 @@ You can use your token to retrieve all the data required
 
    Execute:
    `rails s`
+
+# Dependencies
+- ruby 2.7.0p0
+- Rails 6.0.3.3
 
 ## Author ✒️
 
