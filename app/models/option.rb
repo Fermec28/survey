@@ -4,4 +4,5 @@ class Option < ApplicationRecord
   validates :description, presence: true
   validates :description, uniqueness: { scope: :question_id,
     message: "should have unique description per question" }
+  scope :responses_count, ->{joins(:responses).count}
 end

@@ -17,6 +17,9 @@ class Api::V1::SurveysController < ApplicationController
     unless Current.user
       @survey = Survey.find(params[:id])
       render json: @survey
+    else
+      @survey = Current.user.surveys.find(params[:survey_id])
+      render json: @survey, serializer: SurveyStatisticSerializer, status: :ok
     end
   end
 
@@ -25,7 +28,6 @@ class Api::V1::SurveysController < ApplicationController
       survey.destroy
       render json: {} , status: :no_content
   end
-
 
 
   def update

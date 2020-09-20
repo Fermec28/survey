@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :users, only: [:create]
       resources :surveys, only: [:index, :create, :update, :show, :destroy] do
-        resources :questions, only: [:create, :update, :destroy]
+        resources :questions, only: [:create, :update, :destroy] do
+          get '/statistics', to: "questions#statistics"
+        end
       end
 
       resources :questions, only: [] do

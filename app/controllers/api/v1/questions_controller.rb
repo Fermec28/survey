@@ -1,6 +1,6 @@
 class Api::V1::QuestionsController < ApplicationController
   include Secured
-  before_action :authenticate_user! , only: [:create, :destroy, :update]
+  before_action :authenticate_user! , only: [:create, :destroy, :update, :statistics]
   before_action :get_survey
   
   def create
@@ -20,6 +20,11 @@ class Api::V1::QuestionsController < ApplicationController
     render json: {}, status: :no_content
   end
 
+  def statistics
+    @question = @survey.questions.find(params[:question_id])
+    render json: @question, serializer: QuestionStatisticSerializer, status: :ok
+  end
+
   private 
   def question_params
     params.require(:question).permit(:description)
@@ -28,5 +33,6 @@ class Api::V1::QuestionsController < ApplicationController
   def get_survey
     @survey =  Survey.find(params[:survey_id])
   end
+
 
 end
