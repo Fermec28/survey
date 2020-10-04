@@ -18,7 +18,7 @@ class Api::V1::SurveysController < ApplicationController
       @survey = Survey.find(params[:id])
       render json: @survey
     else
-      @survey = Current.user.surveys.find(params[:survey_id])
+      @survey = Current.user.surveys.find(params[:id])
       render json: @survey, serializer: SurveyStatisticSerializer, status: :ok
     end
   end

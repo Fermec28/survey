@@ -3,6 +3,11 @@ class Api::V1::OptionsController < ApplicationController
   before_action :authenticate_user! , only: [:create, :destroy, :update]
   before_action :get_question
   
+  def index
+    @options = @question.options
+    render json: {Options: @options}
+  end
+
   def create
     @option = @question.options.create!(option_params)
     render json: @option
